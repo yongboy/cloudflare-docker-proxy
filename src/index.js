@@ -1,5 +1,15 @@
 import DOCS from './help.html'
 
+// return docs
+if (url.pathname === "/") {
+  return new Response(DOCS, {
+    status: 200,
+    headers: {
+      "content-type": "text/html"
+    }
+  });
+}
+
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
@@ -19,7 +29,7 @@ const routes = {
   "ecr.nieyong.pro": "https://public.ecr.aws",
 
   // staging
-  "docker-staging.libcuda.so": dockerHub,
+  "docker-staging.nieyong.pro": dockerHub,
 };
 
 function routeByHosts(host) {
